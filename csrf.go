@@ -17,7 +17,6 @@ func Protect() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		if c.Request.Method == "GET" {
 			token := GenerateToken()
-			fmt.Printf("set token %s\n", token)
 			c.SetCookie("csrf_token", token, 10*60, "/", "", false, false)
 			c.Set("csrf_token", token)
 			c.Next()
